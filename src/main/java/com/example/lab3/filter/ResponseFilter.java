@@ -1,6 +1,5 @@
 package com.example.lab3.filter;
 
-import lombok.SneakyThrows;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -8,7 +7,10 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.transform.*;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
@@ -28,8 +30,8 @@ public final class ResponseFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws ServletException, IOException {
 
-        ResettableStreamHttpServletRequest wrappedRequest = null;
-        ResettableStreamHttpServletResponse wrappedResponse = null;
+        ResettableStreamHttpServletRequest wrappedRequest;
+        ResettableStreamHttpServletResponse wrappedResponse;
 
         try{
             wrappedRequest = new ResettableStreamHttpServletRequest((HttpServletRequest) request);

@@ -1,8 +1,6 @@
 package com.example.lab3.controller.xslt;
 
-import com.example.lab3.model.Client;
 import com.example.lab3.model.Purchase;
-import com.example.lab3.repository.ClientRepository;
 import com.example.lab3.repository.PurchaseRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;

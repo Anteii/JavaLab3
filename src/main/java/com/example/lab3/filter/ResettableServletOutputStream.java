@@ -1,22 +1,18 @@
 package com.example.lab3.filter;
 
 import javax.servlet.ServletOutputStream;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import java.io.OutputStream;
 import javax.servlet.WriteListener;
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class ResettableServletOutputStream extends ServletOutputStream {
 
 
 
     public OutputStream outputStream;
-    private ResettableStreamHttpServletResponse wrappedResponse;
-    private ServletOutputStream servletOutputStream = new ServletOutputStream(){
-        boolean isFinished = false;
-        boolean isReady = true;
-        WriteListener writeListener = null;
+    private final ResettableStreamHttpServletResponse wrappedResponse;
+    private final ServletOutputStream servletOutputStream = new ServletOutputStream(){
+        WriteListener writeListener;
 
         @Override
         public void setWriteListener(WriteListener writeListener) {
@@ -24,7 +20,7 @@ public class ResettableServletOutputStream extends ServletOutputStream {
         }
 
         public boolean isReady(){
-            return isReady;
+            return true;
         }
         @Override
         public void write(int w) throws IOException{
@@ -40,7 +36,6 @@ public class ResettableServletOutputStream extends ServletOutputStream {
 
     @Override
     public void close() throws IOException {
-        System.out.println("** RESPONSE CLOSE **");
         outputStream.close();
     }
 
