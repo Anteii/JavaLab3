@@ -48,6 +48,8 @@ public final class ResponseFilter implements Filter {
                     if (Objects.equals(type, "delete")){
                         type = split[split.length - 3];
                     }
+
+
                     System.out.println("Applying " + type + " XLS");
 
                     // In case if we want to serve rendered document
@@ -68,17 +70,20 @@ public final class ResponseFilter implements Filter {
             e.printStackTrace();
             throw new ServletException("Can't apply XLS transformations!");
         }
-
-
     }
 
     public boolean isXMLotHTMLResponse(HttpServletRequest request) {
+
+        if (!request.getRequestURL().toString().contains("api")) return false;
+
         Enumeration<String> headerNames = request.getHeaderNames();
+
         while (headerNames.hasMoreElements()) {
             String key = headerNames.nextElement();
             String value = request.getHeader(key);
 
-            if (Objects.equals(key.toLowerCase(), "accept")  && value.toLowerCase().contains("application/xml")){
+            if (Objects.equals(key.toLowerCase(), "accept")
+                    && value.toLowerCase().contains("application/xml")){
                 return true;
             }
         }

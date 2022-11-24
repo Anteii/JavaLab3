@@ -17,7 +17,7 @@
         </html>
     </xsl:template>
     <!--List for Filter and ArrayList for controller-->
-    <xsl:template match="List">
+    <xsl:template match="List|ArrayList">
         <div class="bg-image h-100" style="background-image: url('https://r4.wallpaperflare.com/wallpaper/548/555/607/old-books-wallpaper-a0593e636b613d8a40b0772e0834ab7d.jpg');">
             <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.25);">
                 <div class="container">
