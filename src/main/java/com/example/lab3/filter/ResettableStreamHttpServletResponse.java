@@ -11,13 +11,10 @@ import java.io.OutputStreamWriter;
 
 public class ResettableStreamHttpServletResponse extends HttpServletResponseWrapper {
 
-    public String requestId;
-    public String payloadFilePrefix;
-    public String payloadTarget;
 
-    public List<Byte> rawData = new ArrayList<Byte>();
+    public List<Byte> rawData = new ArrayList<>();
     public HttpServletResponse response;
-    private ResettableServletOutputStream servletStream;
+    private final ResettableServletOutputStream servletStream;
 
     public ResettableStreamHttpServletResponse(HttpServletResponse response) throws IOException {
         super(response);
@@ -26,9 +23,10 @@ public class ResettableStreamHttpServletResponse extends HttpServletResponseWrap
     }
 
     @Override
-    public ServletOutputStream getOutputStream() throws IOException {
+    public ServletOutputStream getOutputStream() {
         return servletStream;
     }
+
     public PrintWriter getWriter() throws IOException {
         String encoding = getCharacterEncoding();
         if ( encoding != null ) {

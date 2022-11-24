@@ -14,22 +14,14 @@ import javax.servlet.ServletInputStream;
 public class ResettableStreamHttpServletRequest extends HttpServletRequestWrapper {
 
     private byte[] rawData = {};
-    private HttpServletRequest request;
-    private ResettableServletInputStream servletStream;
+    private final HttpServletRequest request;
+    private final ResettableServletInputStream servletStream;
 
-    public String requestId;
-    public String payloadFilePrefix;
-    public String payloadTarget;
 
     public ResettableStreamHttpServletRequest(HttpServletRequest request) throws IOException {
         super(request);
         this.request = request;
         this.servletStream = new ResettableServletInputStream();
-    }
-
-    void resetInputStream() throws IOException {
-        initRawData();
-        servletStream.inputStream = new ByteArrayInputStream(rawData);
     }
 
     private void initRawData() throws IOException {
@@ -40,6 +32,7 @@ public class ResettableStreamHttpServletRequest extends HttpServletRequestWrappe
         }
         servletStream.inputStream = new ByteArrayInputStream(rawData);
     }
+
     @Override
     public ServletInputStream getInputStream() throws IOException {
         initRawData();
