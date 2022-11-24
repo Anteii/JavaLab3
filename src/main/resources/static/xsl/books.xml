@@ -1,0 +1,24 @@
+<?xml-stylesheet type="text/xsl" href="books.xsl"?>
+<List>
+    <item>
+        <id>1</id>
+        <title>Naruto</title>
+        <authorName>Japan man</authorName>
+        <genre>Shounen</genre>
+        <price>90.0</price>
+    </item>
+    <item>
+        <id>2</id>
+        <title>Bible</title>
+        <authorName>God</authorName>
+        <genre>religion</genre>
+        <price>1000.0</price>
+    </item>
+    <item>
+        <id>3</id>
+        <title>War and Peace</title>
+        <authorName>Lev Tolstoy</authorName>
+        <genre>novel</genre>
+        <price>5601.0</price>
+    </item>
+</List>
